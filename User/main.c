@@ -21,7 +21,7 @@ int main(void)
 	while (1)
 	{
 		// num = CH452_GetKey();
-		// u16 pwm =200;
+		u16 pwm =200;
 
 		/* switch(num){
 			case 0:
