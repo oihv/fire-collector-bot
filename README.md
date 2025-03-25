@@ -5,10 +5,12 @@ A "fire" collector robot for an undergraduate competitition made with ??? board.
 ## To do list:
 - [x] Moves 12v motor x 4
 - [ ] 5v motor x2 (both uses pwm/TIM)
-- [ ] Moves servo
+- [x] Moves servo
 - [ ] PID (proportional–integral–derivative controller) mechanism
 - [ ] Receive input from 7 pin grayscale sensor
 - [ ] built in mpu6070 (accelorometernya, perlu banget nanti)
+- [ ] how to convert accelerometer output to position
+- [ ] low pass filter
 
 ## Prerequisite Knowledge
 GPIO (General Purpose Input Output) - [for setting pin high or low]
