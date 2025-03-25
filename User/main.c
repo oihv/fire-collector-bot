@@ -20,6 +20,7 @@ int main(void) { // Initialize the system
   while (1) {
     // num = CH452_GetKey();
     // u16 pwm =200;
+    printf("Samdut");
 
     /* switch(num){
             case 0:
