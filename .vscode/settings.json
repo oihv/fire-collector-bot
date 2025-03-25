@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "motor.h": "c",
+        "ch452.h": "c",
+        "stdio.h": "c",
+        "stdint.h": "c"
+    }
+}
