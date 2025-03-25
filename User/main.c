@@ -1,8 +1,8 @@
 #include "Bsp.h"
 #include "CH452.h"
 #include "Motor.h"
-#include <rt_misc.h>
-#include <stdio.h>
+#include "misc.h"
+#include "stdio.h"
 
 int RPM = 0;
 // ADC value
@@ -16,11 +16,20 @@ int main(void) { // Initialize the system
   BSP_Init();
   ServoMotor_Config();
   uint8_t switch_state;
-
+	
   while (1) {
-    // num = CH452_GetKey();
+		/*
+		TIM_SetCompare2(TIM2, 195);
+		delay_ms(1000);
+		TIM_SetCompare2(TIM2, 100);
+		delay_ms(1000);
+    */// num = CH452_GetKey();
     // u16 pwm =200;
-    printf("Samdut");
+		// Set_Motor1_RPM(50);
+    //Set_Motor1_RPM(200);
+    //delay_ms(2000);
+    //Set_Motor1_RPM(-200);
+    //delay_ms(2000);
 
     /* switch(num){
             case 0:
@@ -84,21 +93,17 @@ int main(void) { // Initialize the system
                     break;
     } */
     // Move motor
-    /* Set_Motor1_RPM(20);
-    delay_ms(2000);
-    Set_Motor1_RPM(-20);
-    delay_ms(2000); */
 
     // Move servo
-    /* TIM_SetCompare2(TIM2, 184); // Move servo 1 counter clockwise
+     //TIM_SetCompare2(TIM2, 184); // Move servo 1 counter clockwise
     TIM_SetCompare1(TIM2, 184); // Move servo 2
     delay_ms(2000);
-    TIM_SetCompare2(TIM2, 185); // Stop
+    //TIM_SetCompare2(TIM2, 185); // Stop
     TIM_SetCompare1(TIM2, 185);
     delay_ms(2000);
-    TIM_SetCompare2(TIM2, 186); // Move clockwise
+    //TIM_SetCompare2(TIM2, 186); // Move clockwise
     TIM_SetCompare1(TIM2, 186);
-    delay_ms(2000); */
+    delay_ms(2000); 
 
     // Photo electric switch
     /* switch_state = Read_IO2;
@@ -110,11 +115,11 @@ int main(void) { // Initialize the system
     {
     } */
     // Start an ADC conversion
-    ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+    //ADC_SoftwareStartConvCmd(ADC1, ENABLE);
 
     // IR test
-    adc_value = ADC_GetConversionValue(ADC1);
-    if (adc_value != 0)
-      distance = 1735 / adc_value - 6;
+    //adc_value = ADC_GetConversionValue(ADC1);
+    //if (adc_value != 0)
+      //distance = 1735 / adc_value - 6;
   }
 }

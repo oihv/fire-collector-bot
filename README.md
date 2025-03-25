@@ -3,7 +3,7 @@
 A "fire" collector robot for an undergraduate competitition made with ??? board.
 
 ## To do list:
-- [ ] Moves 12v motor x 4
+- [x] Moves 12v motor x 4
 - [ ] 5v motor x2 (both uses pwm/TIM)
 - [ ] Moves servo
 - [ ] PID (proportional–integral–derivative controller) mechanism
