@@ -16,6 +16,7 @@ int main(void) { // Initialize the system
   BSP_Init();
   ServoMotor_Config();
   uint8_t switch_state;
+  TT_Motor_Init()
 	
   while (1) {
     // num = CH452_GetKey();
