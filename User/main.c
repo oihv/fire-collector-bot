@@ -16,13 +16,13 @@ int main(void) { // Initialize the system
   BSP_Init();
   ServoMotor_Config();
 //   uint8_t switch_state;
-  TT_Motor_Init()
+  TT_Motor_Init();
 	
   CH452_Init();
   /*uint8_t switch_state;*/
 
   while (1) {
-    num = CH452_GetKey();
+    int num = CH452_GetKey();
     // u16 pwm =200;
 
     switch (num) {
