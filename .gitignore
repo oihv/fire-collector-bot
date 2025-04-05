@@ -1,3 +1,21 @@
+# Ignore build artifacts
+build/
+
+# Ignore editor/IDE cache files
+.cache/
+.vscode/
+.idea/
+
+# Ignore compiled binaries
+*.elf
+*.hex
+*.bin
+*.map
+
+# Ignore CMake files
+CMakeFiles/
+CMakeCache.txt
+
 # Prerequisites
 *.d
 
