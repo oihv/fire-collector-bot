@@ -2,6 +2,7 @@
 #include "CH452.h"
 #include "Motor.h"
 // #include "misc.h"
+#include "movement.h"
 #include "stdio.h"
 
 int RPM = 0;
@@ -14,17 +15,18 @@ int distance;
 int num = -1;
 int main(void) { // Initialize the system
   BSP_Init();
-  ServoMotor_Config();
+  // ServoMotor_Config();
   //   uint8_t switch_state;
   TT_Motor_Init();
 
   CH452_Init();
   /*uint8_t switch_state;*/
+  moveForward(100);
 
   while (1) {
-    int num = CH452_GetKey();
+    // int num = CH452_GetKey();
     // u16 pwm =200;
-    TT_MotorAB_Set_Duty(800);
+    // TT_MotorAB_Set_Duty(800); // Set TT Motor
 
     //     switch (num) {
     //     case 0:
