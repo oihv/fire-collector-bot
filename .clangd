@@ -1,2 +1,0 @@
-CompileFlags:
-  Add: [-DSTM32F10X_MD, -DUSE_STDPERIPH_DRIVER]
