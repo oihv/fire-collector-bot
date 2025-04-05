@@ -30,7 +30,6 @@ void moveRight(int rpm) {
   Set_Motor2_RPM(-rpm);
   Set_Motor3_RPM(rpm);
   Set_Motor4_RPM(rpm);
-  
 }
 
 void rotateCW(int rpm) {
