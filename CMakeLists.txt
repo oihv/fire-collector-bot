@@ -12,7 +12,7 @@ set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
 set(CMAKE_ASM_COMPILER arm-none-eabi-as)
 
 # Set the target properties
-set(MCU_FLAGS "-mcpu=cortex-m3 -mthumb -DSTM32F10X_M -DUSE_STDPERIPH_DRIVER")
+set(MCU_FLAGS "-mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER")
 set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/STM32F103C6.ld")
 
 # Compiler flags
