@@ -45,3 +45,11 @@ void rotateCCW(int rpm) {
   Set_Motor3_RPM(rpm);
   Set_Motor4_RPM(rpm);
 }
+
+void stopMotor() {
+	Set_Motor1_RPM(0);
+  Set_Motor2_RPM(0);
+  Set_Motor3_RPM(0);
+  Set_Motor4_RPM(0);
+
+}

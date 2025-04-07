@@ -21,7 +21,7 @@ int main(void) { // Initialize the system
 
   CH452_Init();
   /*uint8_t switch_state;*/
-  moveForward(100);
+  //moveForward(100);
 
   while (1) {
     // int num = CH452_GetKey();

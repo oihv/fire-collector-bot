@@ -700,7 +700,7 @@ I (.\Lib\inc\stm32f10x_tim.h)(0x67E181F5)
 I (.\Lib\inc\stm32f10x_usart.h)(0x67E181F5)
 I (.\Lib\inc\misc.h)(0x67E181F5)
 F (.\Startup\startup_stm32f10x_md.s)(0x67E181F5)(--cpu Cortex-M3 -g --apcs=interwork -IC:\Users\setia\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include--pd "__UVISION_VERSION SETA 542" --pd "STM32F10X_LD SETA 1"--list .\listings\startup_stm32f10x_md.lst --xref -o .\objects\startup_stm32f10x_md.o --depend .\objects\startup_stm32f10x_md.d)
-F (.\User\main.c)(0x67E40D5C)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\CMSIS -I .\Lib\inc -I .\Lib\src -I .\Startup -I .\User -I .\Hardware -D__UVISION_VERSION="542" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_M-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\User\main.c)(0x67F37C6E)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\CMSIS -I .\Lib\inc -I .\Lib\src -I .\Startup -I .\User -I .\Hardware -D__UVISION_VERSION="542" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_M-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\Hardware\Bsp.h)(0x67E181F5)
 I (.\Hardware\sys.h)(0x67E181F5)
 I (.\CMSIS\stm32f10x.h)(0x67E181F5)
@@ -732,8 +732,9 @@ I (.\Lib\inc\stm32f10x_usart.h)(0x67E181F5)
 I (.\Lib\inc\stm32f10x_wwdg.h)(0x67E181F5)
 I (.\Lib\inc\misc.h)(0x67E181F5)
 I (C:\Users\setia\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
-I (.\Hardware\CH452.h)(0x67E181F5)
+I (.\Hardware\CH452.h)(0x67F134B5)
 I (.\Hardware\Motor.h)(0x67E181F5)
+I (User\movement.h)(0x67F37C40)
 F (.\User\stm32f10x_it.c)(0x67E181F5)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\CMSIS -I .\Lib\inc -I .\Lib\src -I .\Startup -I .\User -I .\Hardware -D__UVISION_VERSION="542" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_M-o .\objects\stm32f10x_it.o --omf_browse .\objects\stm32f10x_it.crf --depend .\objects\stm32f10x_it.d)
 I (User\stm32f10x_it.h)(0x67E181F5)
 I (.\CMSIS\stm32f10x.h)(0x67E181F5)
@@ -764,7 +765,7 @@ I (.\Lib\inc\stm32f10x_tim.h)(0x67E181F5)
 I (.\Lib\inc\stm32f10x_usart.h)(0x67E181F5)
 I (.\Lib\inc\stm32f10x_wwdg.h)(0x67E181F5)
 I (.\Lib\inc\misc.h)(0x67E181F5)
-F (.\Hardware\Bsp.c)(0x67E3FA16)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\CMSIS -I .\Lib\inc -I .\Lib\src -I .\Startup -I .\User -I .\Hardware -D__UVISION_VERSION="542" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_M-o .\objects\bsp.o --omf_browse .\objects\bsp.crf --depend .\objects\bsp.d)
+F (.\Hardware\Bsp.c)(0x67E4E475)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\CMSIS -I .\Lib\inc -I .\Lib\src -I .\Startup -I .\User -I .\Hardware -D__UVISION_VERSION="542" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_M-o .\objects\bsp.o --omf_browse .\objects\bsp.crf --depend .\objects\bsp.d)
 I (Hardware\Bsp.h)(0x67E181F5)
 I (Hardware\sys.h)(0x67E181F5)
 I (.\CMSIS\stm32f10x.h)(0x67E181F5)
@@ -798,7 +799,7 @@ I (.\Lib\inc\misc.h)(0x67E181F5)
 I (C:\Users\setia\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
 I (C:\Users\setia\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\include\math.h)(0x5E8E3CC2)
 I (Hardware\Motor.h)(0x67E181F5)
-I (Hardware\CH452.h)(0x67E181F5)
+I (Hardware\CH452.h)(0x67F134B5)
 F (.\Hardware\sys.c)(0x67E181F5)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\CMSIS -I .\Lib\inc -I .\Lib\src -I .\Startup -I .\User -I .\Hardware -D__UVISION_VERSION="542" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_M-o .\objects\sys.o --omf_browse .\objects\sys.crf --depend .\objects\sys.d)
 I (Hardware\sys.h)(0x67E181F5)
 I (.\CMSIS\stm32f10x.h)(0x67E181F5)
@@ -861,8 +862,8 @@ I (.\Lib\inc\stm32f10x_usart.h)(0x67E181F5)
 I (.\Lib\inc\stm32f10x_wwdg.h)(0x67E181F5)
 I (.\Lib\inc\misc.h)(0x67E181F5)
 F (.\Hardware\CH452.c)(0x67E181F5)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I .\CMSIS -I .\Lib\inc -I .\Lib\src -I .\Startup -I .\User -I .\Hardware -D__UVISION_VERSION="542" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_M-o .\objects\ch452.o --omf_browse .\objects\ch452.crf --depend .\objects\ch452.d)
-I (Hardware\ch452.h)(0x67E181F5)
-I (Hardware\bsp.h)(0x67E181F5)
+I (Hardware\ch452.h)(0x67F134B5)
+I (Hardware\Bsp.h)(0x67E181F5)
 I (Hardware\sys.h)(0x67E181F5)
 I (.\CMSIS\stm32f10x.h)(0x67E181F5)
 I (.\CMSIS\core_cm3.h)(0x67E181F5)
@@ -893,4 +894,4 @@ I (.\Lib\inc\stm32f10x_usart.h)(0x67E181F5)
 I (.\Lib\inc\stm32f10x_wwdg.h)(0x67E181F5)
 I (.\Lib\inc\misc.h)(0x67E181F5)
 I (C:\Users\setia\AppData\Local\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
-F (.\Hardware\CH452.h)(0x67E181F5)()
+F (.\Hardware\CH452.h)(0x67F134B5)()
