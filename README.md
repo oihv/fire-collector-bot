@@ -11,6 +11,9 @@ A "fire" collector robot for an undergraduate competitition made with ??? board.
 - [ ] built in mpu6070 (accelorometernya, perlu banget nanti)
 - [ ] how to convert accelerometer output to position
 - [ ] low pass filter
+- [ ] receive flame location from CH4502
+    - [ ] Simple row by row input (with backspace and enter)
+    - [ ] Map each button to the cell in the matrix, hit the button to increment
 
 ## Prerequisite Knowledge
 GPIO (General Purpose Input Output) - [for setting pin high or low]

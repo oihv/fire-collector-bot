@@ -1,6 +1,14 @@
 #include "movement.h"
 #include "Motor.h"
 
+/*
+ * Motor map
+ *              HEAD
+ *               ===
+ * front left <= 1 2 => front right
+ *  rear left <= 3 4 => rear right
+ */
+
 void moveForward(int rpm) {
   Set_Motor1_RPM(rpm);
   Set_Motor2_RPM(rpm);
