@@ -22,22 +22,31 @@ int main(void) { // Initialize the system
   CH452_Init();
   /*uint8_t switch_state;*/
   //moveForward(100);
-
-  while (1) {
-		moveForward(100);
-		delay_ms(1000);
-		moveBackward(100);
-		delay_ms(1000);
-		moveLeft(100);
-		delay_ms(1000);
-		moveRight(100);
-		delay_ms(1000);
+	moveLeft(1);
+//		delay_ms(200);
+		stopMotor();
+/*		delay_ms(1000);
+		moveBackward(1);
+		delay_ms(200);
 		stopMotor();
 		delay_ms(1000);
-		rotateCW(100);
+		moveLeft(1);
+		delay_ms(200);
+		stopMotor();
 		delay_ms(1000);
-		rotateCCW(100);
+		moveRight(1);
+		delay_ms(200);
+		stopMotor();
 		delay_ms(1000);
+	
+		rotateCW(1);
+		delay_ms(500);
+		stopMotor();
+		delay_ms(1000);
+		rotateCCW(1);
+		delay_ms(500);
+		stopMotor();
+		delay_ms(1000);*/
     // int num = CH452_GetKey();
     // u16 pwm =200;
     // TT_MotorAB_Set_Duty(800); // Set TT Motor
@@ -140,5 +149,4 @@ int main(void) { // Initialize the system
     //     adc_value = ADC_GetConversionValue(ADC1);
     //     if (adc_value != 0)
     //       distance = 1735 / adc_value - 6;
-  }
 }

@@ -6,13 +6,13 @@ int balance_UP(float Angle, float Mechanical_balance, float Gyro) {}
 uint8_t sensor[7];
 // The sensors we are using is from IO1-IO7
 void readGreyscale() {
-  sensor[0] = Read_IO1;
-  sensor[1] = Read_IO2;
-  sensor[2] = Read_IO3;
-  sensor[3] = Read_IO4;
-  sensor[4] = Read_IO5;
-  sensor[5] = Read_IO6;
-  sensor[6] = Read_IO7;
+  sensor[0] = Read_IO12;
+  sensor[1] = Read_IO11;
+  sensor[2] = Read_IO10;
+  sensor[3] = Read_IO9;
+  sensor[4] = Read_IO8;
+  sensor[5] = Read_IO7;
+  sensor[6] = Read_IO6;
 }
 
 // TODO: check the algorithm
@@ -54,7 +54,7 @@ int PID() {
 bool FourLineCross() {
   readGreyscale();
   for (int i = 0; i <= 6; i++) {
-      if (sensor[i] == 0) {
+      if (sensor[i] == 1) {
           return false;  // Not all sensors are over the line
       }
   }
@@ -71,10 +71,10 @@ bool VerticalLineCentered() {
 
   int blackCountSides = 0;
   for (int i = 0; i <= 6; i++) {
-      if (i < 2 || i > 4) {
-          if (sensor[i] < 1) blackCountSides++;
+      if (i <= 2 || i >= 4) {
+          if (sensor[i] == 1) blackCountSides++;
       }
   }
 
-  return (blackCountCenter >= 2 && blackCountSides == 0);
+  return (blackCountCenter >= 2 && blackCountSides >= 4);
 }
