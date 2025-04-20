@@ -3,11 +3,12 @@
 
 #include "Bsp.h"
 #include <stdint.h>
+#include <stdbool.h>
 
-uint8_t sensor[7];
 
 int balance_UP(float Angle, float Mechanical_balance, float Gyro);
 void readGreyscale();
-int PID(int EEROR);
-
+int PID();
+bool FourLineCross();
+bool VerticalLineCentered();
 #endif

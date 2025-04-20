@@ -8,12 +8,21 @@
  * front left <= 1 4 => front right
  *  rear left <= 2 3 => rear right
  */
+int pidcorrection;
 
 void moveForward(int rpm) {
-  Set_Motor1_RPM(rpm);
-  Set_Motor2_RPM(rpm);
-  Set_Motor3_RPM(rpm);
-  Set_Motor4_RPM(rpm);
+  while(1){
+    if(FourLineCross()){
+      break;
+    }
+    else{
+      pidcorrection = PID();
+      Set_Motor1_RPM(rpm);
+      Set_Motor2_RPM(rpm);
+      Set_Motor3_RPM(rpm);
+      Set_Motor4_RPM(rpm);
+    }
+  }
 }
 
 void moveBackward(int rpm) {
@@ -24,10 +33,17 @@ void moveBackward(int rpm) {
 }
 
 void moveLeft(int rpm) {
-  Set_Motor1_RPM(-rpm);
-  Set_Motor2_RPM(rpm);
-  Set_Motor3_RPM(-rpm);
-  Set_Motor4_RPM(rpm);
+  while(1){
+    if(VerticalLineCentered()){
+      break;
+    }
+    else{
+      Set_Motor1_RPM(-rpm);
+      Set_Motor2_RPM(rpm);
+      Set_Motor3_RPM(-rpm);
+      Set_Motor4_RPM(rpm);
+    }
+  }
 }
 
 void moveRight(int rpm) {
