@@ -5,8 +5,8 @@
  * Motor map
  *              HEAD
  *               ===
- * front left <= 1 2 => front right
- *  rear left <= 3 4 => rear right
+ * front left <= 1 4 => front right
+ *  rear left <= 2 3 => rear right
  */
 
 void moveForward(int rpm) {
@@ -38,17 +38,17 @@ void moveRight(int rpm) {
 }
 
 void rotateCW(int rpm) {
-  Set_Motor1_RPM(rpm);
+  Set_Motor1_RPM(-rpm);
   Set_Motor2_RPM(-rpm);
-  Set_Motor3_RPM(-rpm);
+  Set_Motor3_RPM(rpm);
   Set_Motor4_RPM(rpm);
 }
 
 // Rotate counter clockwise
 void rotateCCW(int rpm) {
-  Set_Motor1_RPM(-rpm);
+  Set_Motor1_RPM(rpm);
   Set_Motor2_RPM(rpm);
-  Set_Motor3_RPM(rpm);
+  Set_Motor3_RPM(-rpm);
   Set_Motor4_RPM(-rpm);
 }
 
