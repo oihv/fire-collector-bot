@@ -24,13 +24,27 @@ int main(void) { // Initialize the system
   //moveForward(100);
 
   while (1) {
+		moveForward(100);
+		delay_ms(1000);
+		moveBackward(100);
+		delay_ms(1000);
+		moveLeft(100);
+		delay_ms(1000);
+		moveRight(100);
+		delay_ms(1000);
+		stopMotor();
+		delay_ms(1000);
+		rotateCW(100);
+		delay_ms(1000);
+		rotateCCW(100);
+		delay_ms(1000);
     // int num = CH452_GetKey();
     // u16 pwm =200;
     // TT_MotorAB_Set_Duty(800); // Set TT Motor
-		Set_Motor1_RPM(50);
-		Set_Motor2_RPM(50);
-		Set_Motor3_RPM(-50); // set to opposite direction
-		Set_Motor4_RPM(50);
+		//Set_Motor1_RPM(50);
+		//Set_Motor2_RPM(50);
+		//Set_Motor3_RPM(-50); // set to opposite direction
+		//Set_Motor4_RPM(50);
 
     //     switch (num) {
     //     case 0:

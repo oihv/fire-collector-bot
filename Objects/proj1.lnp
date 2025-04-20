@@ -27,10 +27,13 @@
 ".\objects\startup_stm32f10x_md.o"
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"
+".\objects\movement.o"
 ".\objects\bsp.o"
 ".\objects\sys.o"
 ".\objects\motor.o"
 ".\objects\ch452.o"
+".\objects\pid.o"
+".\objects\mpu6050.o"
 --strict --scatter ".\Objects\proj1.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

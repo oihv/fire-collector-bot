@@ -4,6 +4,7 @@
         "ch452.h": "c",
         "stdio.h": "c",
         "stdint.h": "c",
-        "bsp.h": "c"
+        "bsp.h": "c",
+        "pid.h": "c"
     }
 }

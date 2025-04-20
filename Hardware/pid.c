@@ -3,7 +3,7 @@
 
 // TODO: look up how this function can be implemented and utilized
 int balance_UP(float Angle, float Mechanical_balance, float Gyro) {}
-
+uint8_t sensor[7];
 // The sensors we are using is from IO1-IO7
 void readGreyscale() {
   sensor[0] = Read_IO1;
@@ -17,7 +17,7 @@ void readGreyscale() {
 
 // TODO: check the algorithm
 // TODO: implement fuzzy PID ???
-int PID(int EEROR) {
+int PID() {
   int sensor_average = 0;
   int sensor_sum = 0;
   static int p = 0;
@@ -49,4 +49,32 @@ int PID(int EEROR) {
   lp = p;
 
   return correction = (int)(Kp * p + Ki * i + Kd * d);
+}
+
+bool FourLineCross() {
+  readGreyscale();
+  for (int i = 0; i <= 6; i++) {
+      if (sensor[i] == 0) {
+          return false;  // Not all sensors are over the line
+      }
+  }
+  return true;
+}
+
+bool VerticalLineCentered() {
+  readGreyscale();
+
+  int blackCountCenter = 0;
+  for (int i = 2; i <= 4; i++) {
+      if (sensor[i] == 0) blackCountCenter++;
+  }
+
+  int blackCountSides = 0;
+  for (int i = 0; i <= 6; i++) {
+      if (i < 2 || i > 4) {
+          if (sensor[i] < 1) blackCountSides++;
+      }
+  }
+
+  return (blackCountCenter >= 2 && blackCountSides == 0);
 }
