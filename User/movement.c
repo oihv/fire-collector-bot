@@ -47,10 +47,17 @@ void moveLeft(int rpm) {
 }
 
 void moveRight(int rpm) {
+<<<<<<< HEAD
   Set_Motor1_RPM(-rpm);
   Set_Motor2_RPM(rpm);
   Set_Motor3_RPM(rpm);
   Set_Motor4_RPM(-rpm);
+=======
+  Set_Motor1_RPM(rpm);
+  Set_Motor2_RPM(-rpm);
+  Set_Motor3_RPM(-rpm);
+  Set_Motor4_RPM(rpm);
+>>>>>>> 9c4a068916033363d9ef95e8122479643cc21b97
 }
 
 void rotateCW(int rpm) {
