@@ -21,32 +21,8 @@ int main(void) { // Initialize the system
 
   CH452_Init();
   /*uint8_t switch_state;*/
-  //moveForward(100);
 	moveLeft(1);
-//		delay_ms(200);
-		stopMotor();
-/*		delay_ms(1000);
-		moveBackward(1);
-		delay_ms(200);
-		stopMotor();
-		delay_ms(1000);
-		moveLeft(1);
-		delay_ms(200);
-		stopMotor();
-		delay_ms(1000);
-		moveRight(1);
-		delay_ms(200);
-		stopMotor();
-		delay_ms(1000);
-	
-		rotateCW(1);
-		delay_ms(500);
-		stopMotor();
-		delay_ms(1000);
-		rotateCCW(1);
-		delay_ms(500);
-		stopMotor();
-		delay_ms(1000);*/
+	stopMotor();
     // int num = CH452_GetKey();
     // u16 pwm =200;
     // TT_MotorAB_Set_Duty(800); // Set TT Motor

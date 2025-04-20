@@ -64,17 +64,18 @@ bool FourLineCross() {
 bool VerticalLineCentered() {
   readGreyscale();
 
-  int blackCountCenter = 0;
+  int whiteCountCenter = 0;
   for (int i = 2; i <= 4; i++) {
-      if (sensor[i] == 0) blackCountCenter++;
+      if (sensor[i] == 0) whiteCountCenter++;
   }
 
-  int blackCountSides = 0;
+  int whiteCountSides = 0;
   for (int i = 0; i <= 6; i++) {
-      if (i <= 2 || i >= 4) {
-          if (sensor[i] == 1) blackCountSides++;
+      if (i <= 1 || i >= 5) {  // side sensors only
+          if (sensor[i] == 0) whiteCountSides++;
       }
   }
 
-  return (blackCountCenter >= 2 && blackCountSides >= 4);
+  // We want center to be mostly white, and sides to be mostly black
+  return (whiteCountCenter >= 2 && whiteCountSides == 0);
 }
