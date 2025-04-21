@@ -13,7 +13,7 @@ set(CMAKE_ASM_COMPILER arm-none-eabi-as)
 
 # Set the target properties
 set(MCU_FLAGS "-mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER")
-set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/STM32F103C6.ld")
+set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/stm32f103c6tx_flash.ld")
 
 # Compiler flags
 set(CMAKE_C_FLAGS "${MCU_FLAGS} -O2 -Wall")
@@ -36,7 +36,7 @@ include_directories(
 
 # Source files
 set(SOURCES
-    CMSIS/core_cm3.c
+    CMSIS/core_cm3_linux.c
     CMSIS/system_stm32f10x.c
     Lib/src/misc.c
     Lib/src/stm32f10x_adc.c
