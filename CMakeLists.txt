@@ -12,17 +12,22 @@ set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
 set(CMAKE_ASM_COMPILER arm-none-eabi-as)
 
 # Set the target properties
-set(MCU_FLAGS "-mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER")
-set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/stm32f103c6tx_flash.ld")
+# Flags for C/C++/Assembly compilation steps (defines, architecture)
+set(COMMON_FLAGS "-g -mcpu=cortex-m3 -mthumb")
+
+# Flags specifically for C/C++ preprocessor (defines)
+set(PREPROCESSOR_DEFINES "-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER")
 
 # Compiler flags
-set(CMAKE_C_FLAGS "${MCU_FLAGS} -O2 -Wall")
-set(CMAKE_CXX_FLAGS "${MCU_FLAGS} -O2 -Wall")
-set(CMAKE_ASM_FLAGS "${MCU_FLAGS}")
+set(CMAKE_C_FLAGS "${COMMON_FLAGS} ${PREPROCESSOR_DEFINES} -O2 -Wall")
+set(CMAKE_CXX_FLAGS "${COMMON_FLAGS} ${PREPROCESSOR_DEFINES} -O2 -Wall")
 
-# Linker flags
+# Assembly flags - ONLY include architecture flags, NOT preprocessor defines for .s files
+set(CMAKE_ASM_FLAGS "${COMMON_FLAGS}") # <-- Corrected line
+
+# Linker flags (already looked good)
+set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/stm32f103c6tx_flash.ld")
 set(CMAKE_EXE_LINKER_FLAGS "-T${LINKER_SCRIPT} -Wl,--gc-sections -Wl,-Map=${PROJECT_NAME}.map")
-
 # Include directories
 include_directories(
     ${CMAKE_SOURCE_DIR}/CMSIS
@@ -41,12 +46,37 @@ set(SOURCES
     Lib/src/misc.c
     Lib/src/stm32f10x_adc.c
     Lib/src/stm32f10x_bkp.c
+    Lib/src/stm32f10x_can.c
+    Lib/src/stm32f10x_cec.c
+    Lib/src/stm32f10x_crc.c
+    Lib/src/stm32f10x_dac.c
+    Lib/src/stm32f10x_dbgmcu.c
+    Lib/src/stm32f10x_dma.c
+    Lib/src/stm32f10x_exti.c
+    Lib/src/stm32f10x_flash.c
+    Lib/src/stm32f10x_fsmc.c
+    Lib/src/stm32f10x_gpio.c
+    Lib/src/stm32f10x_i2c.c
+    Lib/src/stm32f10x_iwdg.c
+    Lib/src/stm32f10x_pwr.c
+    Lib/src/stm32f10x_rcc.c
+    Lib/src/stm32f10x_rtc.c
+    Lib/src/stm32f10x_sdio.c
+    Lib/src/stm32f10x_spi.c
+    Lib/src/stm32f10x_tim.c
+    Lib/src/stm32f10x_usart.c
+    Lib/src/stm32f10x_wwdg.c
     User/main.c
+    User/movement.c
+    User/algo.c
     User/stm32f10x_it.c
+    User/utils.c
     Hardware/Bsp.c
-    Hardware/sys.c
-    Hardware/Motor.c
     Hardware/CH452.c
+    Hardware/Motor.c
+    Hardware/pid.c
+    Hardware/sys.c
+    Startup/startup_stm32f103x6.s
 )
 
 # Add executable target

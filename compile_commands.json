@@ -37,9 +37,27 @@
 },
 {
   "directory": "/home/nikolas/Programming/repos/fire-collector-bot",
+  "command": "arm-none-eabi-gcc  -I/home/nikolas/Programming/repos/fire-collector-bot/CMSIS -I/home/nikolas/Programming/repos/fire-collector-bot/Lib/inc -I/home/nikolas/Programming/repos/fire-collector-bot/Startup -I/home/nikolas/Programming/repos/fire-collector-bot/User -I/home/nikolas/Programming/repos/fire-collector-bot/Hardware -I/usr/lib/gcc/arm-none-eabi/14.2.0/include -I/usr/arm-none-eabi/include -mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -O2 -Wall -o CMakeFiles/proj1.elf.dir/User/movement.c.o -c /home/nikolas/Programming/repos/fire-collector-bot/User/movement.c",
+  "file": "/home/nikolas/Programming/repos/fire-collector-bot/User/movement.c",
+  "output": "CMakeFiles/proj1.elf.dir/User/movement.c.o"
+},
+{
+  "directory": "/home/nikolas/Programming/repos/fire-collector-bot",
+  "command": "arm-none-eabi-gcc  -I/home/nikolas/Programming/repos/fire-collector-bot/CMSIS -I/home/nikolas/Programming/repos/fire-collector-bot/Lib/inc -I/home/nikolas/Programming/repos/fire-collector-bot/Startup -I/home/nikolas/Programming/repos/fire-collector-bot/User -I/home/nikolas/Programming/repos/fire-collector-bot/Hardware -I/usr/lib/gcc/arm-none-eabi/14.2.0/include -I/usr/arm-none-eabi/include -mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -O2 -Wall -o CMakeFiles/proj1.elf.dir/User/algo.c.o -c /home/nikolas/Programming/repos/fire-collector-bot/User/algo.c",
+  "file": "/home/nikolas/Programming/repos/fire-collector-bot/User/algo.c",
+  "output": "CMakeFiles/proj1.elf.dir/User/algo.c.o"
+},
+{
+  "directory": "/home/nikolas/Programming/repos/fire-collector-bot",
   "command": "arm-none-eabi-gcc  -I/home/nikolas/Programming/repos/fire-collector-bot/CMSIS -I/home/nikolas/Programming/repos/fire-collector-bot/Lib/inc -I/home/nikolas/Programming/repos/fire-collector-bot/Startup -I/home/nikolas/Programming/repos/fire-collector-bot/User -I/home/nikolas/Programming/repos/fire-collector-bot/Hardware -I/usr/lib/gcc/arm-none-eabi/14.2.0/include -I/usr/arm-none-eabi/include -mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -O2 -Wall -o CMakeFiles/proj1.elf.dir/User/stm32f10x_it.c.o -c /home/nikolas/Programming/repos/fire-collector-bot/User/stm32f10x_it.c",
   "file": "/home/nikolas/Programming/repos/fire-collector-bot/User/stm32f10x_it.c",
   "output": "CMakeFiles/proj1.elf.dir/User/stm32f10x_it.c.o"
+},
+{
+  "directory": "/home/nikolas/Programming/repos/fire-collector-bot",
+  "command": "arm-none-eabi-gcc  -I/home/nikolas/Programming/repos/fire-collector-bot/CMSIS -I/home/nikolas/Programming/repos/fire-collector-bot/Lib/inc -I/home/nikolas/Programming/repos/fire-collector-bot/Startup -I/home/nikolas/Programming/repos/fire-collector-bot/User -I/home/nikolas/Programming/repos/fire-collector-bot/Hardware -I/usr/lib/gcc/arm-none-eabi/14.2.0/include -I/usr/arm-none-eabi/include -mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -O2 -Wall -o CMakeFiles/proj1.elf.dir/User/utils.c.o -c /home/nikolas/Programming/repos/fire-collector-bot/User/utils.c",
+  "file": "/home/nikolas/Programming/repos/fire-collector-bot/User/utils.c",
+  "output": "CMakeFiles/proj1.elf.dir/User/utils.c.o"
 },
 {
   "directory": "/home/nikolas/Programming/repos/fire-collector-bot",
@@ -49,9 +67,9 @@
 },
 {
   "directory": "/home/nikolas/Programming/repos/fire-collector-bot",
-  "command": "arm-none-eabi-gcc  -I/home/nikolas/Programming/repos/fire-collector-bot/CMSIS -I/home/nikolas/Programming/repos/fire-collector-bot/Lib/inc -I/home/nikolas/Programming/repos/fire-collector-bot/Startup -I/home/nikolas/Programming/repos/fire-collector-bot/User -I/home/nikolas/Programming/repos/fire-collector-bot/Hardware -I/usr/lib/gcc/arm-none-eabi/14.2.0/include -I/usr/arm-none-eabi/include -mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -O2 -Wall -o CMakeFiles/proj1.elf.dir/Hardware/sys.c.o -c /home/nikolas/Programming/repos/fire-collector-bot/Hardware/sys.c",
-  "file": "/home/nikolas/Programming/repos/fire-collector-bot/Hardware/sys.c",
-  "output": "CMakeFiles/proj1.elf.dir/Hardware/sys.c.o"
+  "command": "arm-none-eabi-gcc  -I/home/nikolas/Programming/repos/fire-collector-bot/CMSIS -I/home/nikolas/Programming/repos/fire-collector-bot/Lib/inc -I/home/nikolas/Programming/repos/fire-collector-bot/Startup -I/home/nikolas/Programming/repos/fire-collector-bot/User -I/home/nikolas/Programming/repos/fire-collector-bot/Hardware -I/usr/lib/gcc/arm-none-eabi/14.2.0/include -I/usr/arm-none-eabi/include -mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -O2 -Wall -o CMakeFiles/proj1.elf.dir/Hardware/CH452.c.o -c /home/nikolas/Programming/repos/fire-collector-bot/Hardware/CH452.c",
+  "file": "/home/nikolas/Programming/repos/fire-collector-bot/Hardware/CH452.c",
+  "output": "CMakeFiles/proj1.elf.dir/Hardware/CH452.c.o"
 },
 {
   "directory": "/home/nikolas/Programming/repos/fire-collector-bot",
@@ -61,8 +79,14 @@
 },
 {
   "directory": "/home/nikolas/Programming/repos/fire-collector-bot",
-  "command": "arm-none-eabi-gcc  -I/home/nikolas/Programming/repos/fire-collector-bot/CMSIS -I/home/nikolas/Programming/repos/fire-collector-bot/Lib/inc -I/home/nikolas/Programming/repos/fire-collector-bot/Startup -I/home/nikolas/Programming/repos/fire-collector-bot/User -I/home/nikolas/Programming/repos/fire-collector-bot/Hardware -I/usr/lib/gcc/arm-none-eabi/14.2.0/include -I/usr/arm-none-eabi/include -mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -O2 -Wall -o CMakeFiles/proj1.elf.dir/Hardware/CH452.c.o -c /home/nikolas/Programming/repos/fire-collector-bot/Hardware/CH452.c",
-  "file": "/home/nikolas/Programming/repos/fire-collector-bot/Hardware/CH452.c",
-  "output": "CMakeFiles/proj1.elf.dir/Hardware/CH452.c.o"
+  "command": "arm-none-eabi-gcc  -I/home/nikolas/Programming/repos/fire-collector-bot/CMSIS -I/home/nikolas/Programming/repos/fire-collector-bot/Lib/inc -I/home/nikolas/Programming/repos/fire-collector-bot/Startup -I/home/nikolas/Programming/repos/fire-collector-bot/User -I/home/nikolas/Programming/repos/fire-collector-bot/Hardware -I/usr/lib/gcc/arm-none-eabi/14.2.0/include -I/usr/arm-none-eabi/include -mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -O2 -Wall -o CMakeFiles/proj1.elf.dir/Hardware/pid.c.o -c /home/nikolas/Programming/repos/fire-collector-bot/Hardware/pid.c",
+  "file": "/home/nikolas/Programming/repos/fire-collector-bot/Hardware/pid.c",
+  "output": "CMakeFiles/proj1.elf.dir/Hardware/pid.c.o"
+},
+{
+  "directory": "/home/nikolas/Programming/repos/fire-collector-bot",
+  "command": "arm-none-eabi-gcc  -I/home/nikolas/Programming/repos/fire-collector-bot/CMSIS -I/home/nikolas/Programming/repos/fire-collector-bot/Lib/inc -I/home/nikolas/Programming/repos/fire-collector-bot/Startup -I/home/nikolas/Programming/repos/fire-collector-bot/User -I/home/nikolas/Programming/repos/fire-collector-bot/Hardware -I/usr/lib/gcc/arm-none-eabi/14.2.0/include -I/usr/arm-none-eabi/include -mcpu=cortex-m3 -mthumb -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -O2 -Wall -o CMakeFiles/proj1.elf.dir/Hardware/sys.c.o -c /home/nikolas/Programming/repos/fire-collector-bot/Hardware/sys.c",
+  "file": "/home/nikolas/Programming/repos/fire-collector-bot/Hardware/sys.c",
+  "output": "CMakeFiles/proj1.elf.dir/Hardware/sys.c.o"
 }
 ]

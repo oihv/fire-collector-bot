@@ -5,6 +5,8 @@ build/
 .cache/
 .vscode/
 .idea/
+# Keil uvision file
+proj1.uvguix.*
 
 # Ignore compiled binaries
 *.elf
