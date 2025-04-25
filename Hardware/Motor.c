@@ -126,8 +126,9 @@ void Motor_Init() {
   TIM_OC4PreloadConfig(
       TIM3, TIM_OCPreload_Enable);  // Enable TIM3 OC4 preload register
   TIM_CtrlPWMOutputs(TIM1, ENABLE); // Enable TIM1
-  TIM_Cmd(TIM1, ENABLE);            // Enable TIM1
-  TIM_Cmd(TIM3, ENABLE);            // Enable TIM3
+  TIM1->BDTR |= TIM_BDTR_MOE;
+  TIM_Cmd(TIM1, ENABLE); // Enable TIM1
+  TIM_Cmd(TIM3, ENABLE); // Enable TIM3
 }
 
 // ���õ��1��ת��
