@@ -8,6 +8,7 @@
 
 int balance_UP(float Angle, float Mechanical_balance, float Gyro);
 void readGreyscale();
+void invertSensor ();
 int PID();
 bool FourLineCross();
 int LinePositionStatus();
