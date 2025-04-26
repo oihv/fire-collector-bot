@@ -61,7 +61,7 @@ bool FourLineCross() {
   return true;
 }
 
-bool VerticalLineCentered() {
+int LinePositionStatus() {
   readGreyscale();
 
   int whiteCountCenter = 0;
@@ -76,6 +76,13 @@ bool VerticalLineCentered() {
       }
   }
 
-  // We want center to be mostly white, and sides to be mostly black
-  return (whiteCountCenter >= 2 && whiteCountSides == 0);
+  if (whiteCountCenter >= 2 && whiteCountSides == 0) {
+      return 2;  // Line is centered
+  }
+  else if (whiteCountSides > 0) {
+      return 1;  // Line is at sides
+  }
+  else {
+      return 0;  // No line detected
+  }
 }

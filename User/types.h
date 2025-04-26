@@ -28,7 +28,7 @@ typedef enum {
 
 typedef enum { Right, Bottom, Left, Top } BotOrientation;
 
-typedef enum { LINE, NOLINE } BotOrientation;
+typedef enum { LINE, NOLINE } SensorReadings;
 
 typedef struct {
   int8_t x;
