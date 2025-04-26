@@ -11,4 +11,5 @@ void readGreyscale();
 int PID();
 bool FourLineCross();
 int LinePositionStatus();
+extern uint8_t sensor[7];
 #endif

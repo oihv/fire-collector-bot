@@ -185,6 +185,21 @@
           <WinNumber>1</WinNumber>
           <ItemText>sensor[1]</ItemText>
         </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ax</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ay</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>az</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>

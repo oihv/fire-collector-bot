@@ -37,10 +37,28 @@ void moveBackward(int rpm) {
 }
 
 void moveLeft(int rpm) {
+
+  motorLeft(rpm);
+  bool leftInitialLine = false;
+
+  while(!leftInitialLine){
+    readGreyscale();
+    bool lineDetected = false;
+        for (int i = 0; i < 7; i++) {
+            if (sensor[i] == 0) {
+                lineDetected = true;
+                break;
+            }
+        }
+        if (!lineDetected) {
+          leftInitialLine = true;  // We've left the starting line
+      }
+  }
+	delay_ms(50);
+
   while(1){
     int status = LinePositionStatus();
-    if(!status) motorLeft(rpm);
-    else if (status == 1) motorLeft(rpm/4); // lower speed
+    if (status == 1) motorLeft(rpm/4); // lower speed
     else if (status == 2) {
       stopMotor();
       return;

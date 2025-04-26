@@ -3,6 +3,7 @@
 #include "Motor.h"
 // #include "misc.h"
 #include "movement.h"
+#include "mpu6050.h"
 #include "stdio.h"
 
 int RPM = 0;
@@ -13,6 +14,8 @@ uint16_t adc_value;
 int distance;
 
 int num = -1;
+short gx, gy, gz;
+short ax, ay,az;
 int main(void) { // Initialize the system
   BSP_Init();
   // ServoMotor_Config();
@@ -21,8 +24,12 @@ int main(void) { // Initialize the system
 
   CH452_Init();
   /*uint8_t switch_state;*/
-	moveLeft(1);
-	stopMotor();
+  while (1) {
+    MPU_Get_Accelerometer(&ax, &ay, &az);
+    MPU_Get_Gyroscope(&gx, &gy, &gz);
+  }
+	// moveLeft(100);
+
     // int num = CH452_GetKey();
     // u16 pwm =200;
     // TT_MotorAB_Set_Duty(800); // Set TT Motor
@@ -31,7 +38,6 @@ int main(void) { // Initialize the system
 		//Set_Motor3_RPM(-50); // set to opposite direction
 		//Set_Motor4_RPM(50);
 
-    //     switch (num) {
     //     case 0:
     //       CH452_SetDigit(3, 0);
     //       break;

@@ -4,7 +4,7 @@
 // TODO: look up how this function can be implemented and utilized
 int balance_UP(float Angle, float Mechanical_balance, float Gyro) {}
 uint8_t sensor[7];
-// The sensors we are using is from IO1-IO7
+// The sensors we are using is from IO12-IO6
 void readGreyscale() {
   sensor[0] = Read_IO12;
   sensor[1] = Read_IO11;
@@ -13,8 +13,15 @@ void readGreyscale() {
   sensor[4] = Read_IO8;
   sensor[5] = Read_IO7;
   sensor[6] = Read_IO6;
+  invertSensor();
 }
 
+// Invert for testing purpose on map in B1
+void invertSensor (){
+  for (int i = 0; i<7; i++){
+    sensor[i] = !sensor[i];
+  }
+}
 // TODO: check the algorithm
 // TODO: implement fuzzy PID ???
 int PID() {
@@ -76,7 +83,7 @@ int LinePositionStatus() {
       }
   }
 
-  if (whiteCountCenter >= 2 && whiteCountSides == 0) {
+  if (whiteCountCenter >= 1 && whiteCountSides == 0) {
       return 2;  // Line is centered
   }
   else if (whiteCountSides > 0) {
