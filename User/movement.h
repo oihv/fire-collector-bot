@@ -1,5 +1,6 @@
 #include "Bsp.h"
 #include "pid.h"
+#define basespeed 50
 
 void moveForward(int rpm);
 void moveBackward(int rpm);

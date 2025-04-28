@@ -8,18 +8,26 @@
  * front left <= 1 4 => front right
  *  rear left <= 2 3 => rear right
  */
-int pidcorrection;
 
+int calculate_Motor_RPM(const int baseSpeed, int pid) {  
+  if (pid < 0) return 0;
+  else return pid;
+}
+int pidcorrection;
 void moveForward(int rpm) {
   while(1){
-    if(FourLineCross()){
-      stopMotor();
-      return;
-    }
-    else{
+    //if(FourLineCross()){
+    //  stopMotor();
+    //  return;
+    //}
+    //else{
       pidcorrection = PID();
-      motorForward(rpm);
-    }
+      //pidcorrection = calculate_Motor_RPM(rpm, pidcorrection);
+      Set_Motor1_RPM(rpm+pidcorrection);
+      Set_Motor2_RPM(rpm+pidcorrection);
+      Set_Motor3_RPM(rpm-pidcorrection);
+      Set_Motor4_RPM(rpm-pidcorrection);
+    //}
   }
 }
 
@@ -30,7 +38,6 @@ void moveBackward(int rpm) {
       return;
     }
     else{
-      pidcorrection = PID();
       motorBackward(rpm);
     }
   }
@@ -114,43 +121,43 @@ void stopMotor() {
 }
 
 void motorForward(int rpm){
-  Set_Motor1_RPM(-rpm);
-  Set_Motor2_RPM(-rpm);
+  Set_Motor1_RPM(rpm);
+  Set_Motor2_RPM(rpm);
   Set_Motor3_RPM(rpm);
   Set_Motor4_RPM(rpm);
 }
 
 void motorBackward(int rpm) {
-  Set_Motor1_RPM(rpm);
-  Set_Motor2_RPM(rpm);
+  Set_Motor1_RPM(-rpm);
+  Set_Motor2_RPM(-rpm);
   Set_Motor3_RPM(-rpm);
   Set_Motor4_RPM(-rpm);
 }
 
 void motorLeft(int rpm){
-  Set_Motor1_RPM(rpm);
-  Set_Motor2_RPM(-rpm);
+  Set_Motor1_RPM(-rpm);
+  Set_Motor2_RPM(rpm);
   Set_Motor3_RPM(-rpm);
   Set_Motor4_RPM(rpm);
 }
 
 void motorRight(int rpm) {
-  Set_Motor1_RPM(-rpm);
-  Set_Motor2_RPM(rpm);
+  Set_Motor1_RPM(rpm);
+  Set_Motor2_RPM(-rpm);
   Set_Motor3_RPM(rpm);
   Set_Motor4_RPM(-rpm);
 }
 
 void motorCW(int rpm) {
-  Set_Motor1_RPM(rpm);
-  Set_Motor2_RPM(rpm);
+  Set_Motor1_RPM(-rpm);
+  Set_Motor2_RPM(-rpm);
   Set_Motor3_RPM(rpm);
   Set_Motor4_RPM(rpm);
 }
 
 void motorCCW(int rpm) {
-  Set_Motor1_RPM(-rpm);
-  Set_Motor2_RPM(-rpm);
+  Set_Motor1_RPM(rpm);
+  Set_Motor2_RPM(rpm);
   Set_Motor3_RPM(-rpm);
   Set_Motor4_RPM(-rpm);
 }

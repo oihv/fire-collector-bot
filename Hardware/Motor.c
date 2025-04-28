@@ -132,74 +132,67 @@ void Motor_Init() {
 
 // ���õ��1��ת��
 void Set_Motor1_RPM(int RPM) {
-  if (RPM > 720)
-    RPM = 720;
-  if (RPM < -720)
-    RPM = -720;
+  RPM = -RPM;
+	if (RPM > 400) RPM = 400;
+	if (RPM < -400) RPM = -400;
   if (RPM == 0) {
     TIM_SetCompare1(TIM3, 1000 - RPM);
     TIM_SetCompare2(TIM3, 1000);
   } else if (RPM > 0) {
-    RPM = RPM * 0.8 + 280;
+    //RPM = RPM * 0.8 + 200;
     TIM_SetCompare1(TIM3, 1000 - RPM);
     TIM_SetCompare2(TIM3, 1000);
   } else {
-    RPM = RPM * 0.8 - 280;
+    //RPM = RPM * 0.8 - 200;
     TIM_SetCompare1(TIM3, 1000);
     TIM_SetCompare2(TIM3, 1000 + RPM);
   }
 }
 void Set_Motor2_RPM(int RPM) {
-  RPM = -RPM;
-  if (RPM > 720)
-    RPM = 720;
-  if (RPM < -720)
-    RPM = -720;
+  //solder kebalik
+	if (RPM > 400) RPM = 400;
+	if (RPM < -400) RPM = -400;
   if (RPM == 0) {
     TIM_SetCompare3(TIM3, 1000 - RPM);
     TIM_SetCompare4(TIM3, 1000);
   } else if (RPM > 0) {
-    RPM = RPM * 0.8 + 280;
+    //RPM = RPM * 0.8 + 200;
     TIM_SetCompare3(TIM3, 1000 - RPM);
     TIM_SetCompare4(TIM3, 1000);
   } else {
-    RPM = RPM * 0.8 - 280;
+    //RPM = RPM * 0.8 - 200;
     TIM_SetCompare3(TIM3, 1000);
     TIM_SetCompare4(TIM3, 1000 + RPM);
   }
 }
 void Set_Motor3_RPM(int RPM) {
-  if (RPM > 720)
-    RPM = 720;
-  if (RPM < -720)
-    RPM = -720;
+	if (RPM > 400) RPM = 400;
+	if (RPM < -400) RPM = -400;
   if (RPM == 0) {
     TIM_SetCompare1(TIM1, 1000 - RPM);
     TIM_SetCompare2(TIM1, 1000);
   } else if (RPM > 0) {
-    RPM = RPM * 0.8 + 280;
+    //RPM = RPM * 0.8 + 200;
     TIM_SetCompare1(TIM1, 1000 - RPM);
     TIM_SetCompare2(TIM1, 1000);
   } else {
-    RPM = RPM * 0.8 - 280;
+    //RPM = RPM * 0.8 - 200;
     TIM_SetCompare1(TIM1, 1000);
     TIM_SetCompare2(TIM1, 1000 + RPM);
   }
 }
 void Set_Motor4_RPM(int RPM) {
-  if (RPM > 720)
-    RPM = 720;
-  if (RPM < -720)
-    RPM = -720;
+	if (RPM > 400) RPM = 400;
+	if (RPM < -400) RPM = -400;
   if (RPM == 0) {
     TIM_SetCompare3(TIM1, 1000 - RPM);
     TIM_SetCompare4(TIM1, 1000);
   } else if (RPM > 0) {
-    RPM = RPM * 0.8 + 280;
+    //RPM = RPM * 0.8 + 200;
     TIM_SetCompare3(TIM1, 1000 - RPM);
     TIM_SetCompare4(TIM1, 1000);
   } else {
-    RPM = RPM * 0.8 - 280;
+    //RPM = RPM * 0.8 - 200;
     TIM_SetCompare3(TIM1, 1000);
     TIM_SetCompare4(TIM1, 1000 + RPM);
   }

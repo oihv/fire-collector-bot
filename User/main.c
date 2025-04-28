@@ -16,18 +16,21 @@ int distance;
 int num = -1;
 short gx, gy, gz;
 short ax, ay,az;
+int g;
+	int a;
+int cnt = 0;
+
 int main(void) { // Initialize the system
   BSP_Init();
   // ServoMotor_Config();
   //   uint8_t switch_state;
-  TT_Motor_Init();
+  //TT_Motor_Init();
 
-  CH452_Init();
+  //CH452_Init();
   /*uint8_t switch_state;*/
-  while (1) {
-    MPU_Get_Accelerometer(&ax, &ay, &az);
-    MPU_Get_Gyroscope(&gx, &gy, &gz);
-  }
+  moveForward(200);
+	//Set_Motor1_RPM(10);
+		//Set_Motor3_RPM(100);
 	// moveLeft(100);
 
     // int num = CH452_GetKey();
