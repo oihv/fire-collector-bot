@@ -1,4 +1,5 @@
 #pragma once
+#include "flameColors.h"
 #include "macros.h"
 #include <stdint.h>
 
