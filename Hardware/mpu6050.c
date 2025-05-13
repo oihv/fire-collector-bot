@@ -2,65 +2,71 @@
 #include "Bsp.h"
 #include "sys.h"
 //////////////////////////////////////////////////////////////////////////////////
-// ±¾³ÌÐòÖ»¹©Ñ§Ï°Ê¹ÓÃ£¬Î´¾­×÷ÕßÐí¿É£¬²»µÃÓÃÓÚÆäËüÈÎºÎÓÃÍ¾
-// ALIENTEK STM32F407¿ª·¢°å
-// MPU6050 Çý¶¯´úÂë
-// ÕýµãÔ­×Ó@ALIENTEK
-// ¼¼ÊõÂÛÌ³:www.openedv.com
-// ´´½¨ÈÕÆÚ:2014/5/9
-// °æ±¾£ºV1.0
-// °æÈ¨ËùÓÐ£¬µÁ°æ±Ø¾¿¡£
-// Copyright(C) ¹ãÖÝÊÐÐÇÒíµç×Ó¿Æ¼¼ÓÐÏÞ¹«Ë¾ 2014-2024
-// All rights reserved
+// This program is for educational purposes only and is not authorized for any
+// other use without the author's permission.
+//
+// ALIENTEK STM32F407 Development Board
+// MPU6050 Driver Code
+// Author: ALIENTEK
+// Technical Forum: www.openedv.com
+// Creation Date: 2014/5/9
+// Version: V1.0
+// All rights reserved. Unauthorized reproduction is prohibited.
+// Copyright (C) GuangZhou XingYin Electronics Technology Co., Ltd. 2014-2024
 //////////////////////////////////////////////////////////////////////////////////
 
-// TODO: read howw
-// ³õÊ¼»¯MPU6050
-// ·µ»ØÖµ:0,³É¹¦
-// ÆäËû,´íÎó´úÂë
+// Initialize MPU6050
+// Return value: 0, success
+// Others, error code
 u8 MPU_Init(void) {
   u8 res;
-  IIC_Init();                              // ³õÊ¼»¯IIC×ÜÏß
-  MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X80); // ¸´Î»MPU6050
+  IIC_Init();                              // Initialize IIC bus
+  MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X80); // Reset MPU6050
   delay_ms(100);
-  MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X00); // »½ÐÑMPU6050
-  MPU_Set_Gyro_Fsr(3);                     // ÍÓÂÝÒÇ´«¸ÐÆ÷,¡À2000dps
-  MPU_Set_Accel_Fsr(0);                    // ¼ÓËÙ¶È´«¸ÐÆ÷,¡À2g
-  MPU_Set_Rate(200);                       // ÉèÖÃ²ÉÑùÂÊ50Hz
-  MPU_Write_Byte(MPU_INT_EN_REG, 0X00);    // ¹Ø±ÕËùÓÐÖÐ¶Ï
-  MPU_Write_Byte(MPU_USER_CTRL_REG, 0X00); // I2CÖ÷Ä£Ê½¹Ø±Õ
-  MPU_Write_Byte(MPU_FIFO_EN_REG, 0X00);   // ¹Ø±ÕFIFO
-  MPU_Write_Byte(MPU_INTBP_CFG_REG, 0X80); // INTÒý½ÅµÍµçÆ½ÓÐÐ§
+  MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X00); // Wake up MPU6050
+  MPU_Set_Gyro_Fsr(3);                     // Gyroscope range, ±2000dps
+  MPU_Set_Accel_Fsr(0);                    // Accelerometer range, ±2g
+  MPU_Set_Rate(200);                       // Set sampling rate to 50Hz
+  MPU_Write_Byte(MPU_INT_EN_REG, 0X00);    // Disable all interrupts
+  MPU_Write_Byte(MPU_USER_CTRL_REG, 0X00); // Disable I2C master mode
+  MPU_Write_Byte(MPU_FIFO_EN_REG, 0X00);   // Disable FIFO
+  MPU_Write_Byte(MPU_INTBP_CFG_REG, 0X80); // INT pin active low
   res = MPU_Read_Byte(MPU_DEVICE_ID_REG);
   // USART_SendData(USART1,res);
-  if (res == MPU_ADDR) // Æ÷¼þIDÕýÈ·
+  if (res == MPU_ADDR) // Correct device ID
   {
-    MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X01); // ÉèÖÃCLKSEL,PLL XÖáÎª²Î¿¼
-    MPU_Write_Byte(MPU_PWR_MGMT2_REG, 0X00); // ¼ÓËÙ¶ÈÓëÍÓÂÝÒÇ¶¼¹¤×÷
-    MPU_Set_Rate(200);                       // ÉèÖÃ²ÉÑùÂÊÎª50Hz
+    MPU_Write_Byte(MPU_PWR_MGMT1_REG,
+                   0X01); // Set CLKSEL, PLL X-axis as reference
+    MPU_Write_Byte(MPU_PWR_MGMT2_REG,
+                   0X00); // Enable accelerometer and gyroscope
+    MPU_Set_Rate(200);    // Set sampling rate to 50Hz
   } else
     return 1;
   return 0;
 }
-// ÉèÖÃMPU6050ÍÓÂÝÒÇ´«¸ÐÆ÷ÂúÁ¿³Ì·¶Î§
-// fsr:0,¡À250dps;1,¡À500dps;2,¡À1000dps;3,¡À2000dps
-// ·µ»ØÖµ:0,ÉèÖÃ³É¹¦
-//     ÆäËû,ÉèÖÃÊ§°Ü
+
+// Set the gyroscope full-scale range for MPU6050
+// fsr: 0, ±250dps; 1, ±500dps; 2, ±1000dps; 3, ±2000dps
+// Return value: 0, success
+//              Others, failure
 u8 MPU_Set_Gyro_Fsr(u8 fsr) {
-  return MPU_Write_Byte(MPU_GYRO_CFG_REG, fsr << 3); // ÉèÖÃÍÓÂÝÒÇÂúÁ¿³Ì·¶Î§
+  return MPU_Write_Byte(MPU_GYRO_CFG_REG,
+                        fsr << 3); // Set gyroscope full-scale range
 }
-// ÉèÖÃMPU6050¼ÓËÙ¶È´«¸ÐÆ÷ÂúÁ¿³Ì·¶Î§
-// fsr:0,¡À2g;1,¡À4g;2,¡À8g;3,¡À16g
-// ·µ»ØÖµ:0,ÉèÖÃ³É¹¦
-//     ÆäËû,ÉèÖÃÊ§°Ü
+
+// Set the accelerometer full-scale range for MPU6050
+// fsr: 0, ±2g; 1, ±4g; 2, ±8g; 3, ±16g
+// Return value: 0, success
+//              Others, failure
 u8 MPU_Set_Accel_Fsr(u8 fsr) {
   return MPU_Write_Byte(MPU_ACCEL_CFG_REG,
-                        fsr << 3); // ÉèÖÃ¼ÓËÙ¶È´«¸ÐÆ÷ÂúÁ¿³Ì·¶Î§
+                        fsr << 3); // Set accelerometer full-scale range
 }
-// ÉèÖÃMPU6050µÄÊý×ÖµÍÍ¨ÂË²¨Æ÷
-// lpf:Êý×ÖµÍÍ¨ÂË²¨ÆµÂÊ(Hz)
-// ·µ»ØÖµ:0,ÉèÖÃ³É¹¦
-//     ÆäËû,ÉèÖÃÊ§°Ü
+
+// Set the digital low-pass filter (DLPF) for MPU6050
+// lpf: Digital low-pass filter frequency (Hz)
+// Return value: 0, success
+//              Others, failure
 u8 MPU_Set_LPF(u16 lpf) {
   u8 data = 0;
   if (lpf >= 188)
@@ -75,12 +81,13 @@ u8 MPU_Set_LPF(u16 lpf) {
     data = 5;
   else
     data = 6;
-  return MPU_Write_Byte(MPU_CFG_REG, data); // ÉèÖÃÊý×ÖµÍÍ¨ÂË²¨Æ÷
+  return MPU_Write_Byte(MPU_CFG_REG, data); // Set digital low-pass filter
 }
-// ÉèÖÃMPU6050µÄ²ÉÑùÂÊ(¼Ù¶¨Fs=1KHz)
-// rate:4~1000(Hz)
-// ·µ»ØÖµ:0,ÉèÖÃ³É¹¦
-//     ÆäËû,ÉèÖÃÊ§°Ü
+
+// Set the sampling rate for MPU6050 (assuming Fs=1KHz)
+// rate: 4~1000 (Hz)
+// Return value: 0, success
+//              Others, failure
 u8 MPU_Set_Rate(u16 rate) {
   u8 data;
   if (rate > 1000)
@@ -88,14 +95,14 @@ u8 MPU_Set_Rate(u16 rate) {
   if (rate < 4)
     rate = 4;
   data = 1000 / rate - 1;
-  data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // ÉèÖÃÊý×ÖµÍÍ¨ÂË²¨Æ÷
-  return MPU_Set_LPF(rate / 2);                     // ×Ô¶¯ÉèÖÃLPFÎª²ÉÑùÂÊµÄÒ»°ë
+  data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // Set sampling rate
+  return MPU_Set_LPF(rate /
+                     2); // Automatically set LPF to half the sampling rate
 }
 
-// µÃµ½ÎÂ¶ÈÖµ
-// ·µ»ØÖµ:ÎÂ¶ÈÖµ
+// Get temperature value
+// Return value: Temperature value
 float MPU_Get_Temperature(void) {
-  // u8 buf[2];
   short raw;
   float temp;
   raw = ((u16)MPU_Read_Byte(MPU_TEMP_OUTH_REG) << 8) |
@@ -103,10 +110,11 @@ float MPU_Get_Temperature(void) {
   temp = 36.53 + ((double)raw) / 340;
   return temp;
 }
-// µÃµ½ÍÓÂÝÒÇÖµ(Ô­Ê¼Öµ)
-// gx,gy,gz:ÍÓÂÝÒÇx,y,zÖáµÄÔ­Ê¼¶ÁÊý(´ø·ûºÅ)
-// ·µ»ØÖµ:0,³É¹¦
-//     ÆäËû,´íÎó´úÂë
+
+// Get gyroscope values (raw values)
+// gx, gy, gz: Gyroscope x, y, z-axis raw readings (signed)
+// Return value: 0, success
+//              Others, error code
 u8 MPU_Get_Gyroscope(short *gx, short *gy, short *gz) {
   u8 buf[6], res;
   res = MPU_Read_Len(MPU_ADDR, MPU_GYRO_XOUTH_REG, 6, buf);
@@ -116,12 +124,12 @@ u8 MPU_Get_Gyroscope(short *gx, short *gy, short *gz) {
     *gz = ((u16)buf[4] << 8) | buf[5];
   }
   return res;
-  ;
 }
-// µÃµ½¼ÓËÙ¶ÈÖµ(Ô­Ê¼Öµ)
-// gx,gy,gz:ÍÓÂÝÒÇx,y,zÖáµÄÔ­Ê¼¶ÁÊý(´ø·ûºÅ)
-// ·µ»ØÖµ:0,³É¹¦
-//     ÆäËû,´íÎó´úÂë
+
+// Get accelerometer values (raw values)
+// ax, ay, az: Accelerometer x, y, z-axis raw readings (signed)
+// Return value: 0, success
+//              Others, error code
 u8 MPU_Get_Accelerometer(short *ax, short *ay, short *az) {
   u8 buf[6], res;
   res = MPU_Read_Len(MPU_ADDR, MPU_ACCEL_XOUTH_REG, 6, &buf[0]);
@@ -131,30 +139,28 @@ u8 MPU_Get_Accelerometer(short *ax, short *ay, short *az) {
     *az = ((u16)buf[4] << 8) | buf[5];
   }
   return res;
-  ;
 }
-// IICÁ¬ÐøÐ´
-// addr:Æ÷¼þµØÖ·
-// reg:¼Ä´æÆ÷µØÖ·
-// len:Ð´Èë³¤¶È
-// buf:Êý¾ÝÇø
-// ·µ»ØÖµ:0,Õý³£
-//     ÆäËû,´íÎó´úÂë
+
+// I2C continuous write
+// addr: Device address
+// reg: Register address
+// len: Length of data to write
+// buf: Data buffer
+// Return value: 0, normal
+//              Others, error code
 u8 MPU_Write_Len(u8 addr, u8 reg, u8 len, u8 *buf) {
   u8 i;
   IIC_Start();
-  IIC_Send_Byte((addr << 1) | 0); // ·¢ËÍÆ÷¼þµØÖ·+Ð´ÃüÁî
-  if (IIC_Wait_Ack())             // µÈ´ýÓ¦´ð
-  {
+  IIC_Send_Byte((addr << 1) | 0); // Send device address + write command
+  if (IIC_Wait_Ack()) {           // Wait for acknowledgment
     IIC_Stop();
     return 1;
   }
-  IIC_Send_Byte(reg); // Ð´¼Ä´æÆ÷µØÖ·
-  IIC_Wait_Ack();     // µÈ´ýÓ¦´ð
+  IIC_Send_Byte(reg); // Write register address
+  IIC_Wait_Ack();     // Wait for acknowledgment
   for (i = 0; i < len; i++) {
-    IIC_Send_Byte(buf[i]); // ·¢ËÍÊý¾Ý
-    if (IIC_Wait_Ack())    // µÈ´ýACK
-    {
+    IIC_Send_Byte(buf[i]); // Send data
+    if (IIC_Wait_Ack()) {  // Wait for acknowledgment
       IIC_Stop();
       return 1;
     }
@@ -162,75 +168,75 @@ u8 MPU_Write_Len(u8 addr, u8 reg, u8 len, u8 *buf) {
   IIC_Stop();
   return 0;
 }
-// IICÁ¬Ðø¶Á
-// addr:Æ÷¼þµØÖ·
-// reg:Òª¶ÁÈ¡µÄ¼Ä´æÆ÷µØÖ·
-// len:Òª¶ÁÈ¡µÄ³¤¶È
-// buf:¶ÁÈ¡µ½µÄÊý¾Ý´æ´¢Çø
-// ·µ»ØÖµ:0,Õý³£
-//     ÆäËû,´íÎó´úÂë
+
+// I2C continuous read
+// addr: Device address
+// reg: Register address to read from
+// len: Length of data to read
+// buf: Buffer to store read data
+// Return value: 0, normal
+//              Others, error code
 u8 MPU_Read_Len(u8 addr, u8 reg, u8 len, u8 *buf) {
   IIC_Start();
-  IIC_Send_Byte((addr << 1) | 0); // ·¢ËÍÆ÷¼þµØÖ·+Ð´ÃüÁî
-  if (IIC_Wait_Ack())             // µÈ´ýÓ¦´ð
-  {
+  IIC_Send_Byte((addr << 1) | 0); // Send device address + write command
+  if (IIC_Wait_Ack()) {           // Wait for acknowledgment
     IIC_Stop();
     return 1;
   }
-  IIC_Send_Byte(reg); // Ð´¼Ä´æÆ÷µØÖ·
-  IIC_Wait_Ack();     // µÈ´ýÓ¦´ð
+  IIC_Send_Byte(reg); // Write register address
+  IIC_Wait_Ack();     // Wait for acknowledgment
   IIC_Start();
-  IIC_Send_Byte((addr << 1) | 1); // ·¢ËÍÆ÷¼þµØÖ·+¶ÁÃüÁî
-  IIC_Wait_Ack();                 // µÈ´ýÓ¦´ð
+  IIC_Send_Byte((addr << 1) | 1); // Send device address + read command
+  IIC_Wait_Ack();                 // Wait for acknowledgment
   while (len) {
     if (len == 1)
-      *buf = IIC_Read_Byte(0); // ¶ÁÊý¾Ý,·¢ËÍnACK
+      *buf = IIC_Read_Byte(0); // Read data, send NACK
     else
-      *buf = IIC_Read_Byte(1); // ¶ÁÊý¾Ý,·¢ËÍACK
+      *buf = IIC_Read_Byte(1); // Read data, send ACK
     len--;
     buf++;
   }
-  IIC_Stop(); // ²úÉúÒ»¸öÍ£Ö¹Ìõ¼þ
+  IIC_Stop(); // Generate a stop condition
   return 0;
 }
-// IICÐ´Ò»¸ö×Ö½Ú
-// reg:¼Ä´æÆ÷µØÖ·
-// data:Êý¾Ý
-// ·µ»ØÖµ:0,Õý³£
-//     ÆäËû,´íÎó´úÂë
+
+// I2C write a single byte
+// reg: Register address
+// data: Data to write
+// Return value: 0, normal
+//              Others, error code
 u8 MPU_Write_Byte(u8 reg, u8 data) {
   IIC_Start();
-  IIC_Send_Byte((MPU_ADDR << 1) | 0); // ·¢ËÍÆ÷¼þµØÖ·+Ð´ÃüÁî
-  if (IIC_Wait_Ack())                 // µÈ´ýÓ¦´ð
-  {
+  IIC_Send_Byte((MPU_ADDR << 1) | 0); // Send device address + write command
+  if (IIC_Wait_Ack()) {               // Wait for acknowledgment
     IIC_Stop();
     return 1;
   }
-  IIC_Send_Byte(reg);  // Ð´¼Ä´æÆ÷µØÖ·
-  IIC_Wait_Ack();      // µÈ´ýÓ¦´ð
-  IIC_Send_Byte(data); // ·¢ËÍÊý¾Ý
-  if (IIC_Wait_Ack())  // µÈ´ýACK
-  {
+  IIC_Send_Byte(reg);   // Write register address
+  IIC_Wait_Ack();       // Wait for acknowledgment
+  IIC_Send_Byte(data);  // Send data
+  if (IIC_Wait_Ack()) { // Wait for acknowledgment
     IIC_Stop();
     return 1;
   }
   IIC_Stop();
   return 0;
 }
-// IIC¶ÁÒ»¸ö×Ö½Ú
-// reg:¼Ä´æÆ÷µØÖ·
-// ·µ»ØÖµ:¶Áµ½µÄÊý¾Ý
+
+// I2C read a single byte
+// reg: Register address
+// Return value: Data read
 u8 MPU_Read_Byte(u8 reg) {
   u8 res;
   IIC_Start();
-  IIC_Send_Byte((MPU_ADDR << 1) | 0); // ·¢ËÍÆ÷¼þµØÖ·+Ð´ÃüÁî
-  IIC_Wait_Ack();                     // µÈ´ýÓ¦´ð
-  IIC_Send_Byte(reg);                 // Ð´¼Ä´æÆ÷µØÖ·
-  IIC_Wait_Ack();                     // µÈ´ýÓ¦´ð
+  IIC_Send_Byte((MPU_ADDR << 1) | 0); // Send device address + write command
+  IIC_Wait_Ack();                     // Wait for acknowledgment
+  IIC_Send_Byte(reg);                 // Write register address
+  IIC_Wait_Ack();                     // Wait for acknowledgment
   IIC_Start();
-  IIC_Send_Byte((MPU_ADDR << 1) | 1); // ·¢ËÍÆ÷¼þµØÖ·+¶ÁÃüÁî
-  IIC_Wait_Ack();                     // µÈ´ýÓ¦´ð
-  res = IIC_Read_Byte(0);             // ¶ÁÈ¡Êý¾Ý,·¢ËÍnACK
-  IIC_Stop();                         // ²úÉúÒ»¸öÍ£Ö¹Ìõ¼þ
+  IIC_Send_Byte((MPU_ADDR << 1) | 1); // Send device address + read command
+  IIC_Wait_Ack();                     // Wait for acknowledgment
+  res = IIC_Read_Byte(0);             // Read data, send NACK
+  IIC_Stop();                         // Generate a stop condition
   return res;
 }
